@@ -196,14 +196,11 @@ body {
 }
 
 /* ------- 3D tilt card ------- */
+/* motion is driven by a rAF lerp in TiltCard.tsx — no CSS transition,
+   it would fight the per-frame updates */
 .tilt-card {
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
-}
-
-.tilt-card:hover {
-  transition: transform 0.1s ease-out;
 }
 
 .tilt-glare {
@@ -213,7 +210,6 @@ body {
     rgb(255 255 255 / 0.25),
     transparent 60%
   );
-  transition: opacity 0.4s ease;
 }
 
 /* ------- reduced motion ------- */
