@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <div>
           <p className="font-mono text-[11px] tracking-[0.25em] text-ink-500">
-            {site.callsign} · ALWAYS BUILDING.
+            ALWAYS BUILDING.
           </p>
           <p className="mt-2 text-sm text-ink-400">
             © {new Date().getFullYear()} Lannon Khau

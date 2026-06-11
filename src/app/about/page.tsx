@@ -38,7 +38,7 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-36 sm:px-8">
           <Reveal>
             <p className="font-mono text-[11px] tracking-[0.3em] text-mission-300">
-              {site.callsign}
+              ABOUT
             </p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink-100 sm:text-5xl">
               Engineer. Builder.{" "}
@@ -108,18 +108,6 @@ export default function AboutPage() {
             </Reveal>
           ))}
         </ol>
-
-        <Reveal>
-          <div className="mt-12 rounded-2xl border border-white/8 bg-night-900/60 p-7">
-            <p className="font-mono text-[10px] tracking-[0.25em] text-ink-500">
-              RE: THE CALLSIGN
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-ink-300">
-              &ldquo;Mission Blue Scorpion&rdquo; came from my zodiac sign. Someone told
-              me I was a water Scorpio or something, and I thought that sounded cool.
-            </p>
-          </div>
-        </Reveal>
 
         <Reveal>
           <div className="mt-16 flex flex-wrap gap-4">

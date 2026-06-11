@@ -8,7 +8,6 @@ export const site = {
   github: "https://github.com/LannonTheCannon",
   linkedin: "https://www.linkedin.com/in/lannon-khau/",
   youtube: "https://www.youtube.com/@LannonKhau",
-  callsign: "MISSION BLUE SCORPION",
   taglines: {
     hero: "From prototype to production, tell your story.",
     sub: "Building with intention, curiosity, and a quiet fire to explore the unknown.",

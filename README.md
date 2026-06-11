@@ -32,7 +32,7 @@ public/images/           # Optimized assets salvaged from the v1 site
 
 "Mission Control" — deep-space dark theme with a single Mission Blue accent
 (`--color-mission-*` tokens in `globals.css`), Geist Sans/Mono + Newsreader italic,
-and a Scorpius-constellation hero (the "Mission Blue Scorpion" callsign). All motion
+and a Scorpius-constellation hero charted from real J2000 coordinates. All motion
 respects `prefers-reduced-motion`.
 
 ## Future: /dashboard
