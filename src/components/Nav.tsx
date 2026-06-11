@@ -50,7 +50,7 @@ export default function Nav() {
             href={`mailto:${site.email}`}
             className="rounded-full border border-mission-500/40 bg-mission-500/10 px-4 py-1.5 text-sm text-mission-200 transition-colors hover:border-mission-400 hover:bg-mission-500/20"
           >
-            Hire me
+            Get in touch
           </a>
         </div>
 
@@ -91,7 +91,7 @@ export default function Nav() {
                 href={`mailto:${site.email}`}
                 className="mt-2 block rounded-md border border-mission-500/40 bg-mission-500/10 px-3 py-2.5 text-center text-mission-200"
               >
-                Hire me
+                Get in touch
               </a>
             </li>
           </ul>
