@@ -85,8 +85,11 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="hidden justify-center lg:flex">
-            <Constellation className="h-[420px] w-auto" />
+          <div className="hidden flex-col items-center gap-5 lg:flex">
+            <Constellation className="h-[400px] w-auto" />
+            <p className="hero-rise font-mono text-[10px] tracking-[0.25em] text-ink-500" style={{ "--rise-delay": "600ms" } as React.CSSProperties}>
+              SCORPIUS · CHARTED FROM J2000 COORDINATES
+            </p>
           </div>
         </div>
       </section>
