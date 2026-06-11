@@ -9,13 +9,13 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5">
+    <footer className="border-t-[3px] border-ink bg-ink text-paper">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <div>
-          <p className="font-mono text-[11px] tracking-[0.25em] text-ink-500">
-            ALWAYS BUILDING.
+          <p className="font-mono text-[11px] tracking-[0.25em] text-paper/60">
+            つづく — TO BE CONTINUED · ALWAYS BUILDING.
           </p>
-          <p className="mt-2 text-sm text-ink-400">
+          <p className="mt-2 text-sm text-paper/70">
             © {new Date().getFullYear()} Lannon Khau
           </p>
         </div>
@@ -26,7 +26,7 @@ export default function Footer() {
                 href={s.href}
                 target={s.href.startsWith("http") ? "_blank" : undefined}
                 rel={s.href.startsWith("http") ? "noreferrer" : undefined}
-                className="text-sm text-ink-400 transition-colors hover:text-mission-300"
+                className="font-mono text-xs tracking-[0.15em] uppercase text-paper/70 underline-offset-4 transition-colors hover:text-paper hover:underline"
               >
                 {s.label}
               </a>

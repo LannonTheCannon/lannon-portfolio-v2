@@ -2,46 +2,47 @@ import Image from "next/image";
 import TiltCard from "@/components/TiltCard";
 import { site } from "@/data/site";
 
-// The futuristic business card, carried over from v1 (BUSINESS-CARD-023).
+// Character-file ID card — 3D tilt carried over from v1's tilt.js.
 export default function BusinessCard() {
   return (
-    <TiltCard className="w-[340px] max-w-full rounded-2xl">
-      <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-night-700/80 via-night-800/90 to-night-900 p-6 shadow-[0_20px_60px_-20px_rgb(59_108_246/0.35)]">
-        {/* corner metadata */}
-        <div className="flex items-center justify-between font-mono text-[9px] tracking-[0.22em] text-ink-500">
-          <span>BUSINESS-CARD-023</span>
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-mission-400 shadow-[0_0_8px_2px_rgb(94_139_255/0.6)]" />
+    <TiltCard className="w-[510px] max-w-full">
+      <div className="panel relative overflow-hidden bg-paper p-9">
+        <div className="pointer-events-none absolute inset-0 halftone" aria-hidden="true" />
+
+        <div className="relative flex items-center justify-between font-mono text-xs tracking-[0.22em] text-ink-faint">
+          <span>CHARACTER FILE · 023</span>
+          <span className="bg-stamp px-2 py-1 text-paper">CLASSIFIED</span>
         </div>
 
-        <div className="mt-5 flex items-center gap-4">
-          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/20">
+        <div className="relative mt-7 flex items-center gap-6">
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden border-2 border-ink">
             <Image
               src="/images/avatar.png"
               alt="Portrait of Lannon Khau"
               fill
-              sizes="64px"
-              className="object-cover"
+              sizes="96px"
+              className="mono-img object-cover"
             />
           </div>
           <div>
-            <p className="text-lg font-semibold tracking-tight text-ink-100">
+            <p className="font-display text-3xl uppercase tracking-wide text-ink">
               Lannon Khau
             </p>
-            <p className="mt-0.5 font-mono text-[10px] tracking-[0.18em] text-mission-300">
+            <p className="mt-1.5 font-mono text-xs tracking-[0.18em] text-ink-faint">
               FULL-STACK AI/ML ENGINEER
             </p>
           </div>
         </div>
 
-        <p className="mt-5 font-serif text-sm italic leading-relaxed text-ink-300">
+        <p className="relative mt-7 border-l-[3px] border-ink pl-4 text-lg italic leading-relaxed text-ink-soft">
           &ldquo;From prototype to production, tell your story.&rdquo;
         </p>
 
-        <div className="mt-5 flex flex-col gap-1.5 border-t border-white/10 pt-4">
-          <span className="font-mono text-[9px] tracking-[0.22em] text-ink-500">
-            SECTOR: PRODUCTION AI
+        <div className="relative mt-7 flex flex-col gap-2 border-t-2 border-ink pt-5">
+          <span className="font-mono text-xs tracking-[0.22em] text-ink-faint">
+            AFFILIATION: PRODUCTION AI
           </span>
-          <span className="font-mono text-[10px] tracking-[0.12em] text-ink-400">
+          <span className="font-mono text-sm tracking-[0.12em] text-ink">
             {site.email}
           </span>
         </div>

@@ -1,229 +1,219 @@
+import Image from "next/image";
 import Link from "next/link";
-import BusinessCard from "@/components/BusinessCard";
-import Constellation from "@/components/Constellation";
+import NewspaperStack from "@/components/NewspaperStack";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import Starfield from "@/components/Starfield";
+import Sunburst from "@/components/Sunburst";
 import { projects } from "@/data/projects";
 import { formatDate, posts } from "@/data/posts";
 import { site } from "@/data/site";
 
-const stack = [
-  { group: "Languages", items: ["Python", "TypeScript", "SQL"] },
-  {
-    group: "AI / ML",
-    items: [
-      "Claude",
-      "RAG pipelines",
-      "Azure Document Intelligence",
-      "Azure Cognitive Search",
-      "Prompt engineering",
-      "Citation verification",
-    ],
-  },
-  {
-    group: "Cloud & Infra",
-    items: ["Azure", "AWS", "Supabase", "Azure Entra ID", "GitHub Actions"],
-  },
-  {
-    group: "Frameworks & Tools",
-    items: ["Next.js", "Flask", "n8n", "Streamlit", "Plotly"],
-  },
+const ticker = [
+  "PYTHON",
+  "TYPESCRIPT",
+  "CLAUDE",
+  "RAG PIPELINES",
+  "AZURE DOCUMENT INTELLIGENCE",
+  "AZURE COGNITIVE SEARCH",
+  "N8N",
+  "FLASK",
+  "NEXT.JS",
+  "SUPABASE",
+  "AWS",
+  "GITHUB ACTIONS",
 ];
 
 export default function Home() {
   return (
     <>
-      {/* ---------- HERO ---------- */}
-      <section className="relative overflow-hidden">
-        <Starfield />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-mission-500/10 blur-3xl"
-        />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-5 pb-24 pt-36 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:pb-32 lg:pt-44">
+      {/* ---------- TITLE CARD ---------- */}
+      <section className="relative overflow-hidden border-b-[3px] border-ink">
+        <div className="pointer-events-none absolute inset-0 halftone" aria-hidden="true" />
+
+        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
             <p
-              className="hero-rise font-mono text-[11px] tracking-[0.3em] text-mission-300"
+              className="hero-rise font-mono text-[11px] tracking-[0.3em] text-ink-faint"
               style={{ "--rise-delay": "0ms" } as React.CSSProperties}
             >
               FULL-STACK AI/ML ENGINEER
             </p>
+
             <h1
-              className="hero-rise mt-6 max-w-xl text-4xl font-semibold leading-[1.1] tracking-tight text-ink-100 sm:text-5xl lg:text-6xl"
+              className="hero-rise mt-8 font-display text-[clamp(2.5rem,5vw,4.75rem)] uppercase leading-[0.95] tracking-wide text-ink"
               style={{ "--rise-delay": "120ms" } as React.CSSProperties}
             >
-              From prototype to production,{" "}
-              <em className="font-serif font-normal text-mission-200">
-                tell your story.
-              </em>
+              <span className="whitespace-nowrap">From prototype</span>
+              <br />
+              <span className="whitespace-nowrap">to production,</span>
+              <br />
+              <span className="whitespace-nowrap text-stamp">tell your story.</span>
             </h1>
+
             <p
-              className="hero-rise mt-6 max-w-lg text-lg leading-relaxed text-ink-300"
+              className="hero-rise mt-8 max-w-lg text-lg leading-relaxed text-ink-soft"
               style={{ "--rise-delay": "240ms" } as React.CSSProperties}
             >
-              I build AI-powered systems that turn raw data into insight, clarity, and
-              production-grade tools — document intelligence pipelines, RAG agents, and
-              workflows used daily by real professionals.
+              I build AI-powered systems that turn raw data into insight, clarity,
+              and production-grade tools — used daily by real professionals.
             </p>
+
             <div
               className="hero-rise mt-10 flex flex-wrap items-center gap-4"
               style={{ "--rise-delay": "360ms" } as React.CSSProperties}
             >
               <Link
                 href="/#work"
-                className="rounded-full bg-mission-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-mission-400"
+                className="panel bg-ink px-6 py-3 font-mono text-xs tracking-[0.15em] uppercase text-paper"
               >
-                Explore the work
+                View episodes
               </Link>
               <Link
                 href="/about/"
-                className="rounded-full border border-white/10 px-6 py-3 text-sm text-ink-300 transition-colors hover:border-white/25 hover:text-ink-100"
+                className="panel bg-paper px-6 py-3 font-mono text-xs tracking-[0.15em] uppercase text-ink"
               >
-                About me
+                Character file
               </Link>
             </div>
           </div>
-          <div className="hidden flex-col items-center gap-5 lg:flex">
-            <Constellation className="h-[400px] w-auto" />
-            <p className="hero-rise font-mono text-[10px] tracking-[0.25em] text-ink-500" style={{ "--rise-delay": "600ms" } as React.CSSProperties}>
-              SCORPIUS · CHARTED FROM J2000 COORDINATES
-            </p>
+
+          {/* the morning editions keep landing */}
+          <div
+            className="hero-rise relative hidden items-center justify-center lg:flex"
+            style={{ "--rise-delay": "300ms" } as React.CSSProperties}
+          >
+            <NewspaperStack />
           </div>
         </div>
       </section>
 
-      {/* ---------- SELECTED WORK ---------- */}
-      <section className="mx-auto max-w-6xl scroll-mt-24 px-5 py-24 sm:px-8" id="work">
+      {/* ---------- TICKER ---------- */}
+      <div className="marquee border-b-[3px] border-ink bg-ink py-2.5" aria-hidden="true">
+        {[0, 1].map((dup) => (
+          <div key={dup} className="marquee-track">
+            {ticker.map((t) => (
+              <span
+                key={`${dup}-${t}`}
+                className="px-6 font-mono text-[11px] tracking-[0.25em] text-paper/80"
+              >
+                {t} <span className="ml-6 text-stamp">●</span>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* ---------- EPISODES ---------- */}
+      <section className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24 sm:px-8" id="work">
         <Reveal>
-          <SectionHeading kicker="SELECTED WORK" title="Production AI, shipped." />
+          <SectionHeading kicker="SELECTED WORK" jp="エピソード" title="The episodes." />
         </Reveal>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-8 sm:grid-cols-2">
           {projects.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 2) * 100}>
-              <ProjectCard project={p} />
+            <Reveal key={p.slug} delay={(i % 2) * 80}>
+              <ProjectCard project={p} episode={i + 1} />
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* ---------- ABOUT TEASER ---------- */}
-      <section className="border-y border-white/5 bg-night-900/40">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-[auto_1fr] lg:items-center">
+      {/* ---------- CHARACTER FILE ---------- */}
+      <section className="relative overflow-hidden border-y-[3px] border-ink bg-paper-dim">
+        <div className="pointer-events-none absolute inset-0 halftone-coarse" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[auto_1fr] lg:items-center">
           <Reveal>
-            <div className="flex justify-center">
-              <BusinessCard />
+            <div className="panel relative mx-auto h-56 w-56 overflow-hidden lg:h-64 lg:w-64">
+              <Image
+                src="/images/avatar.png"
+                alt="Portrait of Lannon Khau"
+                fill
+                sizes="256px"
+                className="mono-img object-cover"
+              />
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <p className="font-mono text-[11px] tracking-[0.3em] text-mission-300">
-              ENGINEER. BUILDER. EXPLORER.
+            <p className="font-mono text-[11px] tracking-[0.3em] text-stamp">
+              CHARACTER FILE <span className="font-jp ml-2 text-ink-faint" aria-hidden="true">キャラクター</span>
             </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink-100">
-              Systems that think, learn, and ship.
+            <h2 className="mt-3 font-display text-4xl uppercase tracking-wide text-ink">
+              Engineer. Builder. Explorer.
             </h2>
-            <p className="mt-5 max-w-2xl leading-relaxed text-ink-300">
+            <p className="mt-6 max-w-2xl leading-relaxed text-ink-soft">
               I&apos;m Lannon Khau, a full-stack AI engineer specializing in Python,
               cloud infrastructure, and AI-powered workflows. Most recently at Sweet
               James, I engineered end-to-end AI systems — Azure Document Intelligence,
               OCR pipelines, n8n automation, and conversational RAG — deployed to
               production and used daily by legal professionals.
             </p>
-            <p className="mt-4 max-w-2xl leading-relaxed text-ink-300">
+            <p className="mt-4 max-w-2xl leading-relaxed text-ink-soft">
               Before that: a B.S. in Information Systems from Cal State Fullerton, and
               150+ students taught to program IoT devices through a district-wide
               initiative.
             </p>
             <Link
               href="/about/"
-              className="mt-6 inline-block text-sm text-mission-300 transition-colors hover:text-mission-200"
+              className="mt-7 inline-block border-b-2 border-ink pb-0.5 font-mono text-xs tracking-[0.15em] uppercase text-ink transition-colors hover:border-stamp hover:text-stamp"
             >
-              Read the full story →
+              Open the full file →
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------- STACK ---------- */}
+      {/* ---------- BROADCAST LOG ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
         <Reveal>
-          <SectionHeading kicker="STACK" title="Tools I ship with." />
+          <SectionHeading kicker="WRITING" jp="放送ログ" title="Broadcast log." />
         </Reveal>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {stack.map((g, i) => (
-            <Reveal key={g.group} delay={i * 80}>
-              <div className="h-full rounded-2xl border border-white/8 bg-night-900/60 p-6">
-                <h3 className="font-mono text-[11px] tracking-[0.25em] text-ink-500">
-                  {g.group.toUpperCase()}
-                </h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {g.items.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1 text-xs text-ink-300"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <ul>
+          {posts.map((post, i) => (
+            <Reveal key={post.slug} delay={i * 60}>
+              <li className="border-b-2 border-ink first:border-t-2">
+                <Link
+                  href={`/blog/${post.slug}/`}
+                  className="group flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between"
+                >
+                  <span className="font-display text-xl uppercase tracking-wide text-ink transition-colors group-hover:text-stamp">
+                    {post.title}
+                  </span>
+                  <span className="font-mono text-xs text-ink-faint">
+                    {formatDate(post.date)} · {post.readTime}
+                  </span>
+                </Link>
+              </li>
             </Reveal>
           ))}
-        </div>
+        </ul>
       </section>
 
-      {/* ---------- WRITING ---------- */}
-      <section className="border-t border-white/5">
-        <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
-          <Reveal>
-            <SectionHeading kicker="WRITING" title="Field notes." />
-          </Reveal>
-          <ul className="divide-y divide-white/5">
-            {posts.map((post, i) => (
-              <Reveal key={post.slug} delay={i * 60}>
-                <li>
-                  <Link
-                    href={`/blog/${post.slug}/`}
-                    className="group flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between"
-                  >
-                    <span className="text-lg text-ink-100 transition-colors group-hover:text-mission-200">
-                      {post.title}
-                    </span>
-                    <span className="font-mono text-xs text-ink-500">
-                      {formatDate(post.date)} · {post.readTime}
-                    </span>
-                  </Link>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ---------- CONTACT ---------- */}
+      {/* ---------- NEXT EPISODE ---------- */}
       <section
-        className="relative scroll-mt-24 overflow-hidden border-t border-white/5"
+        className="relative scroll-mt-20 overflow-hidden border-t-[3px] border-ink bg-ink text-paper"
         id="contact"
       >
-        <Starfield count={60} />
-        <div className="relative mx-auto max-w-3xl px-5 py-28 text-center sm:px-8">
+        <div className="pointer-events-none absolute inset-0 halftone-inverse" aria-hidden="true" />
+        <Sunburst className="pointer-events-none absolute -right-72 top-1/2 hidden h-[820px] w-[820px] -translate-y-1/2 text-paper/[0.06] lg:block" />
+        <div className="relative mx-auto max-w-6xl px-5 py-28 sm:px-8">
           <Reveal>
-            <p className="font-mono text-[11px] tracking-[0.3em] text-mission-300">
-              SECTOR: OUTREACH
+            <p className="font-mono text-[11px] tracking-[0.3em] text-paper/60">
+              NEXT EPISODE <span className="font-jp ml-2" aria-hidden="true">次回予告</span>
             </p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-ink-100">
-              Let&apos;s connect.
+            <h2 className="mt-4 max-w-3xl font-display text-5xl uppercase leading-[0.95] tracking-wide sm:text-6xl">
+              Your team ships
+              <br />
+              <span className="text-stamp">real AI.</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-xl leading-relaxed text-ink-300">
+            <p className="mt-6 max-w-xl leading-relaxed text-paper/80">
               I&apos;m open to full-time AI/ML engineering roles and interesting
-              production-AI problems. If you&apos;re building something real, I&apos;d
-              love to hear about it.
+              production-AI problems. If you&apos;re building something real,
+              I&apos;d love to hear about it.
             </p>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href={`mailto:${site.email}`}
-                className="rounded-full bg-mission-500 px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-mission-400"
+                className="border-2 border-paper bg-paper px-6 py-3 font-mono text-xs tracking-[0.15em] uppercase text-ink transition-colors hover:bg-stamp hover:border-stamp hover:text-paper"
               >
                 {site.email}
               </a>
@@ -231,7 +221,7 @@ export default function Home() {
                 href={site.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/10 px-7 py-3 text-sm text-ink-300 transition-colors hover:border-white/25 hover:text-ink-100"
+                className="border-2 border-paper/50 px-6 py-3 font-mono text-xs tracking-[0.15em] uppercase text-paper transition-colors hover:border-paper"
               >
                 LinkedIn
               </a>
@@ -239,7 +229,7 @@ export default function Home() {
                 href={site.github}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/10 px-7 py-3 text-sm text-ink-300 transition-colors hover:border-white/25 hover:text-ink-100"
+                className="border-2 border-paper/50 px-6 py-3 font-mono text-xs tracking-[0.15em] uppercase text-paper transition-colors hover:border-paper"
               >
                 GitHub
               </a>

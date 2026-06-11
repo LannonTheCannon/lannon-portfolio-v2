@@ -1,54 +1,44 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { navLinks, site } from "@/data/site";
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled || open
-          ? "border-b border-white/5 bg-night-950/80 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-paper">
       <nav
         aria-label="Main"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8"
       >
         <Link
           href="/"
-          className="group flex items-center gap-2.5 font-mono text-xs tracking-[0.2em] text-ink-300 transition-colors hover:text-ink-100"
+          className="group flex items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <span className="inline-block h-2 w-2 rounded-full bg-mission-400 shadow-[0_0_12px_2px_rgb(94_139_255/0.6)]" />
-          LANNON KHAU
+          <span className="flex h-8 w-8 items-center justify-center bg-ink font-display text-sm text-paper transition-colors group-hover:bg-stamp">
+            LK
+          </span>
+          <span className="font-mono text-xs tracking-[0.2em] text-ink">
+            LANNON KHAU
+          </span>
         </Link>
 
-        <div className="hidden items-center gap-7 sm:flex">
+        <div className="hidden items-center gap-6 sm:flex">
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-ink-400 transition-colors hover:text-ink-100"
+              className="font-mono text-xs tracking-[0.15em] text-ink-faint uppercase transition-colors hover:text-ink"
             >
               {l.label}
             </Link>
           ))}
           <a
             href={`mailto:${site.email}`}
-            className="rounded-full border border-mission-500/40 bg-mission-500/10 px-4 py-1.5 text-sm text-mission-200 transition-colors hover:border-mission-400 hover:bg-mission-500/20"
+            className="border-2 border-ink bg-ink px-4 py-1.5 font-mono text-xs tracking-[0.15em] text-paper uppercase transition-colors hover:bg-stamp hover:border-stamp"
           >
             Get in touch
           </a>
@@ -56,7 +46,7 @@ export default function Nav() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-md text-ink-300 sm:hidden"
+          className="flex h-10 w-10 items-center justify-center border-2 border-ink text-ink sm:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -64,22 +54,22 @@ export default function Nav() {
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             {open ? (
-              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2.5" />
             ) : (
-              <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="2.5" />
             )}
           </svg>
         </button>
       </nav>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-white/5 px-5 pb-6 pt-2 sm:hidden">
-          <ul className="flex flex-col gap-1">
+        <div id="mobile-menu" className="border-t-[3px] border-ink bg-paper px-5 pb-6 pt-2 sm:hidden">
+          <ul className="flex flex-col">
             {navLinks.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="block rounded-md px-3 py-2.5 text-ink-300 transition-colors hover:bg-white/5 hover:text-ink-100"
+                  className="block border-b border-ink/15 px-1 py-3 font-mono text-sm tracking-[0.15em] uppercase text-ink"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
@@ -89,7 +79,7 @@ export default function Nav() {
             <li>
               <a
                 href={`mailto:${site.email}`}
-                className="mt-2 block rounded-md border border-mission-500/40 bg-mission-500/10 px-3 py-2.5 text-center text-mission-200"
+                className="mt-4 block bg-ink px-3 py-3 text-center font-mono text-sm tracking-[0.15em] uppercase text-paper"
               >
                 Get in touch
               </a>

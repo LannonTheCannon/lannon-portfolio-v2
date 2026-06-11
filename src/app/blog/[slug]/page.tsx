@@ -24,16 +24,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function Block({ block }: { block: PostBlock }) {
   switch (block.type) {
     case "p":
-      return <p className="leading-relaxed text-ink-300">{block.text}</p>;
+      return <p className="leading-relaxed text-ink-soft">{block.text}</p>;
     case "h2":
       return (
-        <h2 className="pt-4 text-2xl font-semibold tracking-tight text-ink-100">
+        <h2 className="pt-4 font-display text-3xl uppercase tracking-wide text-ink">
           {block.text}
         </h2>
       );
     case "code":
       return (
-        <pre className="overflow-x-auto rounded-xl border border-white/8 bg-night-900 p-5 font-mono text-[13px] leading-relaxed text-mission-200">
+        <pre className="overflow-x-auto border-[3px] border-ink bg-ink p-5 font-mono text-[13px] leading-relaxed text-paper">
           <code>{block.code}</code>
         </pre>
       );
@@ -44,12 +44,12 @@ function Block({ block }: { block: PostBlock }) {
           alt={block.alt}
           width={1000}
           height={620}
-          className="rounded-xl border border-white/8"
+          className="panel mono-img"
         />
       );
     case "quote":
       return (
-        <blockquote className="border-l-2 border-mission-400 pl-5 font-serif text-lg italic text-ink-100">
+        <blockquote className="border-l-[3px] border-stamp pl-5 text-lg italic text-ink">
           {block.text}
         </blockquote>
       );
@@ -62,14 +62,15 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <article className="mx-auto max-w-2xl px-5 pb-24 pt-36 sm:px-8">
-      <p className="font-mono text-[11px] tracking-[0.3em] text-mission-300">
-        FIELD NOTE · {formatDate(post.date).toUpperCase()} · {post.readTime.toUpperCase()}
+    <article className="mx-auto max-w-2xl px-5 pb-24 pt-16 sm:px-8 sm:pt-20">
+      <p className="font-mono text-[11px] tracking-[0.3em] text-stamp">
+        BROADCAST · {formatDate(post.date).toUpperCase()} · {post.readTime.toUpperCase()}
       </p>
-      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-ink-100 sm:text-4xl">
+      <h1 className="mt-4 font-display text-4xl uppercase leading-[0.98] tracking-wide text-ink sm:text-5xl">
         {post.title}
       </h1>
-      <p className="mt-4 font-serif text-lg italic text-ink-400">{post.summary}</p>
+      <p className="mt-4 text-lg italic text-ink-faint">{post.summary}</p>
+      <div className="mt-5 h-[3px] w-24 bg-ink" />
 
       <div className="mt-12 space-y-7">
         {post.blocks.map((block, i) => (
@@ -77,12 +78,12 @@ export default async function PostPage({ params }: Props) {
         ))}
       </div>
 
-      <div className="mt-16 border-t border-white/5 pt-8">
+      <div className="mt-16 border-t-[3px] border-ink pt-8">
         <Link
           href="/blog/"
-          className="text-sm text-ink-400 transition-colors hover:text-ink-100"
+          className="font-mono text-xs tracking-[0.15em] uppercase text-ink-faint transition-colors hover:text-ink"
         >
-          ← All field notes
+          ← Broadcast log
         </Link>
       </div>
     </article>
