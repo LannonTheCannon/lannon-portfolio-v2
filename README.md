@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lannonkhau.com — v2
 
-## Getting Started
+Personal portfolio for Lannon Khau, Full-Stack AI/ML Engineer. Built with Next.js 16
+(App Router), TypeScript, and Tailwind CSS v4. Fully static-exported — ready for free
+hosting on Azure Static Web Apps.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static export → ./out
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    page.tsx             # Home: hero, selected work, about, stack, writing, contact
+    about/               # Full bio + timeline
+    work/[slug]/         # Case studies for the 4 production projects
+    blog/                # Field notes index + posts
+    not-found.tsx        # 404 ("signal lost")
+  components/            # Nav, Footer, Reveal, Starfield, Constellation, cards
+  data/                  # All content lives here: site.ts, projects.ts, posts.ts
+public/images/           # Optimized assets salvaged from the v1 site
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design
 
-## Learn More
+"Mission Control" — deep-space dark theme with a single Mission Blue accent
+(`--color-mission-*` tokens in `globals.css`), Geist Sans/Mono + Newsreader italic,
+and a Scorpius-constellation hero (the "Mission Blue Scorpion" callsign). All motion
+respects `prefers-reduced-motion`.
 
-To learn more about Next.js, take a look at the following resources:
+## Future: /dashboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The public site is fully static (`output: 'export'`). A private, Supabase-auth-gated
+`/dashboard` can be added later as its own route group without touching the public
+pages — content is already isolated in `src/data/`, and components are route-agnostic.
