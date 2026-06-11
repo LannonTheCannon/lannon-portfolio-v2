@@ -39,15 +39,22 @@ export default function Constellation({ className = "" }: { className?: string }
           <stop offset="40%" stopColor="#5e8bff" stopOpacity="0.35" />
           <stop offset="100%" stopColor="#5e8bff" stopOpacity="0" />
         </radialGradient>
+        <filter id="star-glow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="1.6" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
 
       {/* connecting lines */}
       <path
         d={tailPath}
         fill="none"
-        stroke="#5e8bff"
-        strokeOpacity="0.45"
-        strokeWidth="1"
+        stroke="#7da3ff"
+        strokeOpacity="0.75"
+        strokeWidth="1.2"
         className="constellation-line"
       />
       {HEAD.map((h, i) => (
@@ -57,9 +64,9 @@ export default function Constellation({ className = "" }: { className?: string }
           y1={ANTARES.y}
           x2={h.x}
           y2={h.y}
-          stroke="#5e8bff"
-          strokeOpacity="0.45"
-          strokeWidth="1"
+          stroke="#7da3ff"
+          strokeOpacity="0.75"
+          strokeWidth="1.2"
           className="constellation-line"
         />
       ))}
@@ -70,8 +77,9 @@ export default function Constellation({ className = "" }: { className?: string }
           key={`s-${i}`}
           cx={s.x}
           cy={s.y}
-          r={s.r}
-          fill="#e6eeff"
+          r={s.r + 0.5}
+          fill="#eef3ff"
+          filter="url(#star-glow)"
           className="constellation-star"
           style={{ animationDelay: `${0.3 + i * 0.12}s` }}
         />
