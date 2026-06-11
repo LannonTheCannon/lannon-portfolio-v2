@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Mission Blue Scorpion palette */
+  /* Mission palette */
   --color-night-950: #04060c;
   --color-night-900: #080d18;
   --color-night-800: #0d1424;
@@ -137,6 +137,27 @@ body {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ------- 3D tilt card ------- */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tilt-card:hover {
+  transition: transform 0.1s ease-out;
+}
+
+.tilt-glare {
+  opacity: var(--glare-opacity, 0);
+  background: radial-gradient(
+    420px circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgb(184 205 255 / 0.14),
+    transparent 60%
+  );
+  transition: opacity 0.4s ease;
 }
 
 /* ------- card lift ------- */

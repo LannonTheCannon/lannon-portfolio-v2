@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import BusinessCard from "@/components/BusinessCard";
 import Constellation from "@/components/Constellation";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
@@ -48,7 +48,7 @@ export default function Home() {
               className="hero-rise font-mono text-[11px] tracking-[0.3em] text-mission-300"
               style={{ "--rise-delay": "0ms" } as React.CSSProperties}
             >
-              {site.callsign} · FULL-STACK AI/ML ENGINEER
+              FULL-STACK AI/ML ENGINEER
             </p>
             <h1
               className="hero-rise mt-6 max-w-xl text-4xl font-semibold leading-[1.1] tracking-tight text-ink-100 sm:text-5xl lg:text-6xl"
@@ -112,14 +112,8 @@ export default function Home() {
       <section className="border-y border-white/5 bg-night-900/40">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-[auto_1fr] lg:items-center">
           <Reveal>
-            <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-2xl border border-white/10 lg:h-56 lg:w-56">
-              <Image
-                src="/images/avatar.png"
-                alt="Portrait of Lannon Khau"
-                fill
-                sizes="224px"
-                className="object-cover"
-              />
+            <div className="flex justify-center">
+              <BusinessCard />
             </div>
           </Reveal>
           <Reveal delay={100}>
