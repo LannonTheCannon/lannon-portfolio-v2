@@ -79,10 +79,16 @@ body {
 }
 
 /* ------- constellation draw-in ------- */
+/* paths set pathLength="1", so dash values are length-independent */
 .constellation-line {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: draw-line 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-line 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.constellation-claw {
+  opacity: 0;
+  animation: star-in 1.2s ease-out forwards;
 }
 
 .constellation-star {
@@ -90,9 +96,22 @@ body {
   animation: star-in 0.8s ease-out forwards;
 }
 
+.constellation-float {
+  animation: constellation-float 7s ease-in-out infinite alternate;
+}
+
 @keyframes draw-line {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes constellation-float {
+  from {
+    transform: translateY(-6px);
+  }
+  to {
+    transform: translateY(8px);
   }
 }
 
@@ -154,8 +173,13 @@ body {
     animation: none;
   }
 
+  .constellation-claw,
   .constellation-star {
     opacity: 1;
+    animation: none;
+  }
+
+  .constellation-float {
     animation: none;
   }
 
